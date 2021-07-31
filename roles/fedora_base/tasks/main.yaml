@@ -12,3 +12,6 @@
 - name: Install development tools
   include: devel.yaml
   tags: devel
+
+- name: Install apps
+  include: apps.yaml
