@@ -23,5 +23,6 @@
     path: /etc/yum.repos.d/google-chrome.repo
     section: google-chrome
     option: enabled
+    mode: '644'
     value: 1
   tags: extra
