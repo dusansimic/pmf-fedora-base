@@ -26,3 +26,11 @@
     mode: '644'
     value: 1
   tags: extra
+
+- name: Add Microsoft Teams repo
+  yum_repository:
+    name: teams
+    description: Microsoft Teams
+    baseurl: https://packages.microsoft.com/yumrepos/ms-teams
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc

@@ -4,4 +4,8 @@
   dnf:
     name: google-chrome-stable
     state: latest
-  tags: extra
+
+- name: Install Microsoft Teams
+  dnf:
+    name: teams
+    state: latest

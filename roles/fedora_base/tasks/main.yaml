@@ -15,3 +15,4 @@
 
 - name: Install apps
   include: apps.yaml
+  tags: extra
