@@ -1,0 +1,7 @@
+---
+# Author: Dušan Simić
+
+- hosts: localhost
+  gather_facts: True
+  roles:
+    - fedora_base

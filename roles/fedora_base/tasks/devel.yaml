@@ -1,0 +1,19 @@
+---
+
+- name: Install OpenJDK 16, 11 and 1.8.0
+  dnf:
+    name:
+      - java-latest-openjdk-devel
+      - java-11-openjdk-devel
+      - java-1.8.0-openjdk-devel
+    state: latest
+
+- name: Install Svetovid library
+  dnf:
+    name: svetovid-lib
+    state: latest
+
+- name: Install Geany
+  dnf:
+    name: geany
+    state: latest
