@@ -1,17 +1,46 @@
 ---
 
-- name: Install OpenJDK 16, 11 and 1.8.0
+- name: Install OpenJDK 1.8.0 and 11
   dnf:
     name:
-      - java-latest-openjdk-devel
-      - java-11-openjdk-devel
       - java-1.8.0-openjdk-devel
+      - java-11-openjdk-devel
+    state: latest
+
+- name: Get Java 1.8.0 path
+  shell: ls -l /usr/lib/jvm | grep -v "\->" | grep "1\.8\.0" | sed 's,.* java\(.*\),java\1,'
+  register: java8_path
+
+- name: Set java to 1.8.0
+  alternatives:
+    name: java
+    link: /etc/alternatives/java
+    # path: /usr/lib/jvm/java-1.8.0/bin/java
+    path: /usr/lib/jvm/{{ java8_path.stdout }}/bin/java
+
+- name: Set javac to 1.8.0
+  alternatives:
+    name: javac
+    link: /etc/alternatives/javac
+    # path: /usr/lib/jvm/java-1.8.0/bin/javac
+    path: /usr/lib/jvm/{{ java8_path.stdout }}/bin/javac
+
+- name: Install OpenJFX 8 an latest
+  dnf:
+    name:
+      - openjfx8
+      - openjfx
     state: latest
 
 - name: Install Svetovid library
   dnf:
     name: svetovid-lib
     state: latest
+
+- name: Add Svetovid to classpath
+  lineinfile:
+    path: /etc/environment
+    line: CLASSPATH="/usr/share/java/svetovid-lib/svetovid-lib.jar"
 
 - name: Install Geany
   dnf:
