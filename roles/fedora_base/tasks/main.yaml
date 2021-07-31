@@ -1,17 +1,14 @@
 ---
 
-- name: Add Dušan's repo
-  yum_repository:
-    name: dusan
-    description: Dušan's repo of various packages
-    baseurl: https://repos.dusansimic.me/rpms
-    gpgcheck: yes
-    gpgkey: https://repos.dusansimic.me/key.gpg
+- name: Set up repos
+  include: repos.yaml
 
 - name: Update packages
   dnf:
     name: "*"
     state: latest
+  tags: base
 
 - name: Install development tools
   include: devel.yaml
+  tags: devel
