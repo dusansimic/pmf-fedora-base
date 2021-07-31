@@ -1,5 +1,14 @@
 ---
 
+- name: Add RPM Fusion Free and Nonfree repos
+  dnf:
+    name:
+      - 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm'
+      - 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm'
+    disable_gpg_check: yes
+    state: present
+  tags: base
+
 - name: Add Dušan's repo
   yum_repository:
     name: dusan
