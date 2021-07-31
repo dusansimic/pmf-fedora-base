@@ -46,3 +46,8 @@
   dnf:
     name: geany
     state: latest
+
+- name: Install Eclipse
+  dnf:
+    name: eclipse
+    state: latest
