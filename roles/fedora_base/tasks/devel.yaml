@@ -7,22 +7,20 @@
       - java-11-openjdk-devel
     state: latest
 
-- name: Get Java 1.8.0 path
-  shell: ls -l /usr/lib/jvm | grep -v "\->" | grep "1\.8\.0" | sed 's,.* java\(.*\),java\1,'
+- name: Get preferred Java path
+  shell: ls -l /usr/lib/jvm | grep -v "\->" | grep "{{ preferred_java_ver }}" | sed 's,.* java\(.*\),java\1,'
   register: java8_path
 
-- name: Set java to 1.8.0
+- name: Set java to preferred version
   alternatives:
     name: java
-    link: /etc/alternatives/java
-    # path: /usr/lib/jvm/java-1.8.0/bin/java
+    link: /usr/bin/java
     path: /usr/lib/jvm/{{ java8_path.stdout }}/bin/java
 
-- name: Set javac to 1.8.0
+- name: Set javac to preferred version
   alternatives:
     name: javac
-    link: /etc/alternatives/javac
-    # path: /usr/lib/jvm/java-1.8.0/bin/javac
+    link: /usr/bin/javac
     path: /usr/lib/jvm/{{ java8_path.stdout }}/bin/javac
 
 - name: Install OpenJFX 8 an latest
