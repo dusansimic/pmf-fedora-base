@@ -49,3 +49,10 @@
   dnf:
     name: eclipse
     state: latest
+
+- name: Install Bouml and Qt4 for Bouml
+  dnf:
+    name:
+      - Qt4LibsForBouml
+      - bouml
+    stage: present
