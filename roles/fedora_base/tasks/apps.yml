@@ -3,9 +3,9 @@
 - name: Install Google Chrome
   dnf:
     name: google-chrome-stable
-    state: latest
+    state: present
 
 - name: Install Microsoft Teams
   dnf:
     name: teams
-    state: latest
+    state: present

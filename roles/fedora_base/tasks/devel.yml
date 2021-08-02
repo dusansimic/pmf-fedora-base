@@ -5,11 +5,14 @@
     name:
       - java-1.8.0-openjdk-devel
       - java-11-openjdk-devel
-    state: latest
+    state: present
 
 - name: Get preferred Java path
-  shell: ls -l /usr/lib/jvm | grep -v "\->" | grep "{{ preferred_java_ver }}" | sed 's,.* java\(.*\),java\1,'
+  shell: |
+    set -o pipefail
+    ls -l /usr/lib/jvm | grep -v "\->" | grep "{{ preferred_java_ver }}" | sed 's,.* java\(.*\),java\1,'
   register: java8_path
+  changed_when: false
 
 - name: Set java to preferred version
   alternatives:
@@ -28,12 +31,12 @@
     name:
       - openjfx8
       - openjfx
-    state: latest
+    state: present
 
 - name: Install Svetovid library
   dnf:
     name: svetovid-lib
-    state: latest
+    state: present
 
 - name: Add Svetovid to classpath
   lineinfile:
@@ -43,12 +46,12 @@
 - name: Install Geany
   dnf:
     name: geany
-    state: latest
+    state: present
 
 - name: Install Eclipse
   dnf:
     name: eclipse
-    state: latest
+    state: present
 
 - name: Install Bouml and Qt4 for Bouml
   dnf:
