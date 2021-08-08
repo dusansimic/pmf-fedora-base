@@ -7,24 +7,17 @@
       - java-11-openjdk-devel
     state: present
 
-- name: Get preferred Java path
-  shell: |
-    set -o pipefail
-    ls -l /usr/lib/jvm | grep -v "\->" | grep "{{ preferred_java_ver }}" | sed 's,.* java\(.*\),java\1,'
-  register: java8_path
-  changed_when: false
-
 - name: Set java to preferred version
   alternatives:
     name: java
     link: /usr/bin/java
-    path: /usr/lib/jvm/{{ java8_path.stdout }}/bin/java
+    path: /usr/lib/jvm/java-{{ preffered_java_ver }}-openjdk/bin/java
 
 - name: Set javac to preferred version
   alternatives:
     name: javac
     link: /usr/bin/javac
-    path: /usr/lib/jvm/{{ java8_path.stdout }}/bin/javac
+    path: /usr/lib/jvm/java-{{ preffered_java_ver }}-openjdk/bin/javac
 
 - name: Install OpenJFX 8 an latest
   dnf:
