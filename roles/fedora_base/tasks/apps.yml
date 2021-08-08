@@ -1,5 +1,10 @@
 ---
 
+- name: Install Transmission
+  dnf:
+    name: transmission
+    state: present
+
 - name: Install Google Chrome
   dnf:
     name: google-chrome-stable
