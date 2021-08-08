@@ -1,7 +1,7 @@
 ---
 
 - name: Set up repos
-  include: repos.yaml
+  include: repos.yml
 
 - name: Update packages
   dnf:
@@ -10,9 +10,9 @@
   tags: base
 
 - name: Install development tools
-  include: devel.yaml
+  include: devel.yml
   tags: devel
 
 - name: Install apps
-  include: apps.yaml
+  include: apps.yml
   tags: extra
