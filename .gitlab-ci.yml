@@ -1,0 +1,10 @@
+image: fedora
+
+stages:
+  - test
+
+lint:
+  stage: test
+  before_script:
+    - dnf install ansible-lint
+  script: ansible-lint -x 403
