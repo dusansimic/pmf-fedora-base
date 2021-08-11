@@ -6,5 +6,5 @@ stages:
 lint:
   stage: test
   before_script:
-    - dnf install ansible-lint
+    - dnf install -yq ansible-lint
   script: ansible-lint -x 403
